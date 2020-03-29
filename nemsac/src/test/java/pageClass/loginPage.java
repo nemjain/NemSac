@@ -41,7 +41,7 @@ public class loginPage {
 
 	public void submitSignIn() {
 		objCommonFunction1.waitExplicit(driver, btnSignIn);
-		btnSignIn.submit();
+		btnSignIn.click();
 	}
 
 	/*

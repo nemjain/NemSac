@@ -8,12 +8,15 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import commonFunctions.commonFunctionsForAll;
+
 
 public class homePage{
 
 	WebDriver driver;
-
+	commonFunctionsForAll objCommonFunction = new commonFunctionsForAll();
 	public homePage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -24,23 +27,13 @@ public class homePage{
 	private WebElement linkLogIn;
 
 	public void click_on_myAccount() {
-		//WebDriverWait wait = new WebDriverWait(driver, 30);
-		//wait.until(ExpectedConditions.elementToBeClickable(linkMyAccount));
-		//waitExplicit(linkMyAccount);
+		objCommonFunction.waitExplicit(driver, linkMyAccount);
 		linkMyAccount.click();
 	}
 
 	public void click_on_LogIn() {
-	//	WebDriverWait wait = new WebDriverWait(driver, 30);
-		//wait.until(ExpectedConditions.elementToBeClickable(linkLogIn));
-		//waitExplicit(linkLogIn);
+		objCommonFunction.waitExplicit(driver, linkLogIn);
 		linkLogIn.click();
 	}
 	
-	public void waitExplicit(WebElement locator) {
-	//	WebDriverWait wait = new WebDriverWait(driver, 30);
-		//wait.until(ExpectedConditions.elementToBeClickable(locator));
-
-	}
-
 }

@@ -20,10 +20,10 @@ public class BaseClass {
 	@BeforeTest
 	public void beforeTest() {
 		// All Variable declaration
-		String driverPath = "C:\\Users\\jindals\\git\\NemSac\\nemsac\\driver\\chromedriver.exe";
+		String driverPath = System.getProperty("user.home")+"\\git\\repository\\nemsac\\driver\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", driverPath);
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
 	}

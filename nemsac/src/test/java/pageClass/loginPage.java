@@ -8,13 +8,18 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import commonFunctions.commonFunctionsForAll;
+
 public class loginPage {
 
 	WebDriver driver;
 	String userName = "nem.jain@taistech.com";
 	String passWord = "Password12";
 
+	commonFunctionsForAll objCommonFunction = new commonFunctionsForAll();
+
 	public loginPage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -28,17 +33,17 @@ public class loginPage {
 	private WebElement btnSignIn;
 
 	public void enterUserName() {
-	//	waitExplicit( txtEmail);
+		objCommonFunction.waitExplicit(driver, txtEmail);
 		txtEmail.sendKeys(userName);
 	}
 
 	public void enterPassword() {
-	//	waitExplicit( txtPassword);
+		objCommonFunction.waitExplicit(driver, txtPassword);
 		txtPassword.sendKeys(passWord);
 	}
 
 	public void submitSignIn() {
-		//waitExplicit(btnSignIn);
+		objCommonFunction.waitExplicit(driver, btnSignIn);
 		btnSignIn.submit();
 	}
 

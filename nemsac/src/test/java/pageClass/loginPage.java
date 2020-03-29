@@ -5,16 +5,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import commonFunctions.commonFunctionsForAll;
 
 public class loginPage {
 
 	WebDriver driver;
 	String userName = "nem.jain@taistech.com";
 	String passWord = "Password12";
+	commonFunctionsForAll objCommonFunction1 = new commonFunctionsForAll();
 
 	public loginPage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -28,17 +30,17 @@ public class loginPage {
 	private WebElement btnSignIn;
 
 	public void enterUserName() {
-	//	waitExplicit( txtEmail);
+		objCommonFunction1.waitExplicit(driver, txtEmail);
 		txtEmail.sendKeys(userName);
 	}
 
 	public void enterPassword() {
-	//	waitExplicit( txtPassword);
+		objCommonFunction1.waitExplicit(driver, txtPassword);
 		txtPassword.sendKeys(passWord);
 	}
 
 	public void submitSignIn() {
-		//waitExplicit(btnSignIn);
+		objCommonFunction1.waitExplicit(driver, btnSignIn);
 		btnSignIn.submit();
 	}
 

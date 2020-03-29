@@ -32,11 +32,11 @@ public class BaseClass {
 	public void f() throws InterruptedException {
 		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
 		driver.get(URL);
-	
+
 		objhomePage = new homePage(driver);
 		objhomePage.click_on_myAccount();
 		objhomePage.click_on_LogIn();
-				
+
 		objloginPage = new loginPage(driver);
 		objloginPage.enterUserName();
 		objloginPage.enterPassword();
@@ -46,7 +46,7 @@ public class BaseClass {
 
 	@AfterTest
 	public void afterTest() {
-	//	driver.quit();
+		// driver.quit();
 	}
 
 }

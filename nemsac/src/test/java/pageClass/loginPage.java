@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import commonFunctions.commonFunctionsForAll;
 
 import commonFunctions.commonFunctionsForAll;
 
@@ -15,7 +15,6 @@ public class loginPage {
 	WebDriver driver;
 	String userName = "nem.jain@taistech.com";
 	String passWord = "Password12";
-
 	commonFunctionsForAll objCommonFunction = new commonFunctionsForAll();
 
 	public loginPage(WebDriver driver) {
@@ -46,12 +45,4 @@ public class loginPage {
 		objCommonFunction.waitExplicit(driver, btnSignIn);
 		btnSignIn.submit();
 	}
-
-	/*
-	 * public void waitExplicit(WebElement locator) { WebDriverWait wait = new
-	 * WebDriverWait(driver, 30);
-	 * wait.until(ExpectedConditions.elementToBeClickable(locator));
-	 * 
-	 * }
-	 */
 }

@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import commonFunctions.commonFunctionsForAll;
 
 import commonFunctions.commonFunctionsForAll;
 
@@ -15,7 +15,8 @@ public class homePage{
 
 	WebDriver driver;
 	commonFunctionsForAll objCommonFunction = new commonFunctionsForAll();
-	public homePage(WebDriver driver) {
+
+  public homePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -35,5 +36,4 @@ public class homePage{
 		objCommonFunction.waitExplicit(driver, linkLogIn);
 		linkLogIn.click();
 	}
-	
 }

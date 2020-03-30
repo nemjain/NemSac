@@ -1,7 +1,6 @@
 package com.practice.nemsac;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -14,38 +13,23 @@ import org.testng.annotations.Test;
 import pageClass.MyAccountPage;
 import pageClass.homePage;
 import pageClass.loginPage;
-import utility.ReadExcel;
 
-public class BaseClass {
+public class SanityTestSuite {
 
 	WebDriver driver;
 	homePage objhomePage;
 	loginPage objloginPage;
 	MyAccountPage objMyAccountPage;
 	String DashBoardTitle = "Welcome To the Dashboard | 4wheelparts.com";
-	ReadExcel objReadExcel;
-	String filePath = System.getProperty("user.home")+"\\git\\repository\\nemsac\\resources";
-	String fileName = "TestExecutionManagement.xlsx";
-	String sheetName = "Test Suite";
-	ArrayList<String> arrayList;
-	
-	
-	
 
 	@BeforeTest
 	public void beforeTest() throws IOException {
 		// All Variable declaration
-		String driverPath = System.getProperty("user.home")+"\\git\\repository\\nemsac\\driver\\chromedriver.exe";
+		String driverPath = System.getProperty("user.home") + "\\git\\NemSac\\nemsac\\driver\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", driverPath);
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		arrayList = new ArrayList<String>();
-		objReadExcel = new ReadExcel();
-		//arrayList = objReadExcel.readExcel(filePath, fileName, sheetName);
-		
-		
-		
 
 	}
 
@@ -62,14 +46,13 @@ public class BaseClass {
 		objloginPage.enterUserName();
 		objloginPage.enterPassword();
 		objloginPage.submitSignIn();
-		//objMyAccountPage = new MyAccountPage(driver);
-		//objMyAccountPage.getPageTitle();
-		
+		// objMyAccountPage = new MyAccountPage(driver);
+		// objMyAccountPage.getPageTitle();
+
 		Assert.assertEquals(DashBoardTitle, driver.getTitle());
 		System.out.println("Welcome To Dashboard");
 	}
-	
-	
+
 	@Test
 	public void validateOrderTheProducts() throws InterruptedException {
 		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
@@ -83,12 +66,13 @@ public class BaseClass {
 		objloginPage.enterUserName();
 		objloginPage.enterPassword();
 		objloginPage.submitSignIn();
-		//objMyAccountPage = new MyAccountPage(driver);
-		//objMyAccountPage.getPageTitle();
-		
+		// objMyAccountPage = new MyAccountPage(driver);
+		// objMyAccountPage.getPageTitle();
+
 		Assert.assertEquals(DashBoardTitle, driver.getTitle());
 		System.out.println("Welcome To Dashboard");
 	}
+
 	@Test
 	public void validateAddToKart() throws InterruptedException {
 		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
@@ -102,14 +86,13 @@ public class BaseClass {
 		objloginPage.enterUserName();
 		objloginPage.enterPassword();
 		objloginPage.submitSignIn();
-		//objMyAccountPage = new MyAccountPage(driver);
-		//objMyAccountPage.getPageTitle();
-		
+		// objMyAccountPage = new MyAccountPage(driver);
+		// objMyAccountPage.getPageTitle();
+
 		Assert.assertEquals(DashBoardTitle, driver.getTitle());
 		System.out.println("Welcome To Dashboard");
 	}
-	
-	
+
 	@AfterTest
 	public void afterTest() {
 		// driver.quit();

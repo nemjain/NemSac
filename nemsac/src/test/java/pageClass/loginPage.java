@@ -8,14 +8,12 @@ import org.openqa.selenium.support.PageFactory;
 
 import commonFunctions.commonFunctionsForAll;
 
-import commonFunctions.commonFunctionsForAll;
-
 public class loginPage {
 
 	WebDriver driver;
 	String userName = "nem.jain@taistech.com";
 	String passWord = "Password12";
-	commonFunctionsForAll objCommonFunction = new commonFunctionsForAll();
+	commonFunctionsForAll objCommonFunction = new commonFunctionsForAll(driver);
 
 	public loginPage(WebDriver driver) {
 		this.driver = driver;

@@ -1,9 +1,6 @@
 package pageClass;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 import commonFunctions.commonFunctionsForAll;
@@ -11,7 +8,7 @@ import commonFunctions.commonFunctionsForAll;
 public class MyAccountPage {
 
 	WebDriver driver;
-	commonFunctionsForAll objCommonFunction2 = new commonFunctionsForAll();
+	commonFunctionsForAll objCommonFunction2 = new commonFunctionsForAll(driver);
 
 	public MyAccountPage(WebDriver driver) {
 		this.driver = driver;

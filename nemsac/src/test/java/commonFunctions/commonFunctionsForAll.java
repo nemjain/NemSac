@@ -17,7 +17,7 @@ public class commonFunctionsForAll {
 	FluentWait<WebDriver> onjFluentWait;
 	WebDriver driver;
 
-	public commonFunctionsForAll() {
+	public commonFunctionsForAll(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -30,17 +30,11 @@ public class commonFunctionsForAll {
 	}
 
 	public void waitFluent(WebDriver driver) {
-		
+
 		onjFluentWait = new FluentWait<WebDriver>(driver);
-		onjFluentWait
-		.withTimeout(Duration.ofMillis(3000))
-		.pollingEvery(Duration.ofMillis(300))
-		.ignoring(NoSuchElementException.class);
+		onjFluentWait.withTimeout(Duration.ofMillis(3000)).pollingEvery(Duration.ofMillis(300))
+				.ignoring(NoSuchElementException.class);
 
 	}
 
-	public void waitExplicit(WebDriver driver, WebElement locator) {
-		wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(locator));
-	}
 }

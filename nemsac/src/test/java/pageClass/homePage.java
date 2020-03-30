@@ -8,13 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 
 import commonFunctions.commonFunctionsForAll;
 
-import commonFunctions.commonFunctionsForAll;
-
 
 public class homePage{
 
 	WebDriver driver;
-	commonFunctionsForAll objCommonFunction = new commonFunctionsForAll();
+	commonFunctionsForAll objCommonFunction = new commonFunctionsForAll(driver);
 
   public homePage(WebDriver driver) {
 		this.driver = driver;

@@ -8,13 +8,15 @@ import org.openqa.selenium.support.PageFactory;
 
 import commonFunctions.commonFunctionsForAll;
 
+import commonFunctions.commonFunctionsForAll;
+
 
 public class homePage{
 
 	WebDriver driver;
 	commonFunctionsForAll objCommonFunction = new commonFunctionsForAll();
 
-	public homePage(WebDriver driver) {
+  public homePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -34,6 +36,4 @@ public class homePage{
 		objCommonFunction.waitExplicit(driver, linkLogIn);
 		linkLogIn.click();
 	}
-	
-	
 }

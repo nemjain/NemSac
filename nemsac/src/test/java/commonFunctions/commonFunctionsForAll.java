@@ -39,4 +39,8 @@ public class commonFunctionsForAll {
 
 	}
 
+	public void waitExplicit(WebDriver driver, WebElement locator) {
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOf(locator));
+	}
 }

@@ -33,7 +33,7 @@ public class BaseClass {
 	}
 
 	@Test
-	public void VerifyValidUserLogin() throws InterruptedException {
+	public void verifyValidUserLogin() throws InterruptedException {
 		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
 		driver.get(URL);
 
@@ -51,7 +51,86 @@ public class BaseClass {
 		Assert.assertEquals(DashBoardTitle, driver.getTitle());
 		System.out.println("Welcome To Dashboard");
 	}
+	
+	
+	@Test
+	public void validateOrderTheProducts() throws InterruptedException {
+		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
+		driver.get(URL);
 
+		objhomePage = new homePage(driver);
+		objhomePage.click_on_myAccount();
+		objhomePage.click_on_LogIn();
+
+		objloginPage = new loginPage(driver);
+		objloginPage.enterUserName();
+		objloginPage.enterPassword();
+		objloginPage.submitSignIn();
+		//objMyAccountPage = new MyAccountPage(driver);
+		//objMyAccountPage.getPageTitle();
+		
+		Assert.assertEquals(DashBoardTitle, driver.getTitle());
+		System.out.println("Welcome To Dashboard");
+	}
+	@Test
+	public void validateAddToKart() throws InterruptedException {
+		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
+		driver.get(URL);
+
+		objhomePage = new homePage(driver);
+		objhomePage.click_on_myAccount();
+		objhomePage.click_on_LogIn();
+
+		objloginPage = new loginPage(driver);
+		objloginPage.enterUserName();
+		objloginPage.enterPassword();
+		objloginPage.submitSignIn();
+		//objMyAccountPage = new MyAccountPage(driver);
+		//objMyAccountPage.getPageTitle();
+		
+		Assert.assertEquals(DashBoardTitle, driver.getTitle());
+		System.out.println("Welcome To Dashboard");
+	}
+	
+	@Test
+	public void validateViewKart() throws InterruptedException {
+		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
+		driver.get(URL);
+
+		objhomePage = new homePage(driver);
+		objhomePage.click_on_myAccount();
+		objhomePage.click_on_LogIn();
+
+		objloginPage = new loginPage(driver);
+		objloginPage.enterUserName();
+		objloginPage.enterPassword();
+		objloginPage.submitSignIn();
+		//objMyAccountPage = new MyAccountPage(driver);
+		//objMyAccountPage.getPageTitle();
+		
+		Assert.assertEquals(DashBoardTitle, driver.getTitle());
+		System.out.println("Welcome To Dashboard");
+	}
+	
+	@Test
+	public void validateViewKart() throws InterruptedException {
+		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
+		driver.get(URL);
+
+		objhomePage = new homePage(driver);
+		objhomePage.click_on_myAccount();
+		objhomePage.click_on_LogIn();
+
+		objloginPage = new loginPage(driver);
+		objloginPage.enterUserName();
+		objloginPage.enterPassword();
+		objloginPage.submitSignIn();
+		//objMyAccountPage = new MyAccountPage(driver);
+		//objMyAccountPage.getPageTitle();
+		
+		Assert.assertEquals(DashBoardTitle, driver.getTitle());
+		System.out.println("Welcome To Dashboard");
+	}
 	@AfterTest
 	public void afterTest() {
 		// driver.quit();

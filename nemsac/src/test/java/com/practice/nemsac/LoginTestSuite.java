@@ -13,14 +13,23 @@ import org.testng.annotations.Test;
 import pageClass.MyAccountPage;
 import pageClass.homePage;
 import pageClass.loginPage;
+import utility.TestDataFileReader;
 
-public class SanityTestSuite {
+public class LoginTestSuite {
 
 	WebDriver driver;
 	homePage objhomePage;
 	loginPage objloginPage;
 	MyAccountPage objMyAccountPage;
-	String DashBoardTitle = "Welcome To the Dashboard | 4wheelparts.com";
+	TestDataFileReader objTestDataFilereader = new TestDataFileReader();
+	/*String DashBoardTitle = "Welcome To the Dashboard | 4wheelparts.com";
+	
+	 * String userName = "nem.jain@taistech.com"; String passWordValid =
+	 * "Password12"; String passWordInvalid = "XYZ123";
+	 
+	
+	String expectedErrorMessage = "The entered username or password is invalid";
+	*/
 
 	@BeforeTest
 	public void beforeTest() throws IOException {
@@ -34,7 +43,7 @@ public class SanityTestSuite {
 	}
 
 	@Test
-	public void verifyValidUserLogin() throws InterruptedException {
+	public void verifyValidUserLogin() {
 		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
 		driver.get(URL);
 
@@ -43,54 +52,36 @@ public class SanityTestSuite {
 		objhomePage.click_on_LogIn();
 
 		objloginPage = new loginPage(driver);
-		objloginPage.enterUserName();
-		objloginPage.enterPassword();
+		objloginPage.enterUserName(objTestDataFilereader.getValue("userName"));
+		objloginPage.enterPassword(objTestDataFilereader.getValue("passWordValid"));
 		objloginPage.submitSignIn();
 		// objMyAccountPage = new MyAccountPage(driver);
 		// objMyAccountPage.getPageTitle();
 
-		Assert.assertEquals(DashBoardTitle, driver.getTitle());
+		Assert.assertEquals(objTestDataFilereader.getValue("DashBoardTitle"), driver.getTitle());
 		System.out.println("Welcome To Dashboard");
 	}
 
 	@Test
-	public void validateOrderTheProducts() throws InterruptedException {
+	public void verifyInvalidUserLogin() throws InterruptedException {
 		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
 		driver.get(URL);
+		String actualLoginError;
 
 		objhomePage = new homePage(driver);
 		objhomePage.click_on_myAccount();
 		objhomePage.click_on_LogIn();
 
 		objloginPage = new loginPage(driver);
-		objloginPage.enterUserName();
-		objloginPage.enterPassword();
+		objloginPage.enterUserName(objTestDataFilereader.getValue("userName"));
+		objloginPage.enterPassword(objTestDataFilereader.getValue("passWordInvalid"));
 		objloginPage.submitSignIn();
+		actualLoginError = objloginPage.getLoginErrorMessage();
 		// objMyAccountPage = new MyAccountPage(driver);
 		// objMyAccountPage.getPageTitle();
-
-		Assert.assertEquals(DashBoardTitle, driver.getTitle());
-		System.out.println("Welcome To Dashboard");
-	}
-
-	@Test
-	public void validateAddToKart() throws InterruptedException {
-		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
-		driver.get(URL);
-
-		objhomePage = new homePage(driver);
-		objhomePage.click_on_myAccount();
-		objhomePage.click_on_LogIn();
-
-		objloginPage = new loginPage(driver);
-		objloginPage.enterUserName();
-		objloginPage.enterPassword();
-		objloginPage.submitSignIn();
-		// objMyAccountPage = new MyAccountPage(driver);
-		// objMyAccountPage.getPageTitle();
-
-		Assert.assertEquals(DashBoardTitle, driver.getTitle());
-		System.out.println("Welcome To Dashboard");
+		
+		Assert.assertEquals(actualLoginError, objTestDataFilereader.getValue("expectedErrorMessage"));
+		System.out.println(actualLoginError);
 	}
 
 	@AfterTest

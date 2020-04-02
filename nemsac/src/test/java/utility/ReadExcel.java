@@ -3,6 +3,7 @@ package utility;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -11,11 +12,12 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 public class ReadExcel {
 
-	public String[][] readExcel(String filePath, String fileName, String sheetName) throws IOException {
+	public ArrayList<String> readExcel(String filePath, String fileName, String sheetName) throws IOException {
 
 		File file = new File(filePath + "\\" + fileName);
 		// Create an object of FileInputStream class to read excel file
-		String arrInput[][] = new String[5][5];
+		ArrayList<String> classNamesToBeExecuted = new ArrayList<String>();
+		//String arrInput[][] = new String[5][5];
 		FileInputStream inputStream = new FileInputStream(file);
 
 		Workbook InputDataWorkBook = null;
@@ -27,22 +29,14 @@ public class ReadExcel {
 
 		// Check condition if the file is xlsx file
 
-		if (fileExtensionName.equals(".xlsx")) {
-
-			// If it is xlsx file then create object of XSSFWorkbook class
-
-			//InputDataWorkBook = new Workbook(inputStream);
-
-		}
-
-		// Check condition if the file is xls file
-
-		else if (fileExtensionName.equals(".xls")) {
+		if (fileExtensionName.equals(".xls")) {
 
 			// If it is xls file then create object of HSSFWorkbook class
 
 			InputDataWorkBook = new HSSFWorkbook(inputStream);
 
+		}else {
+			System.out.println("Please provide .xls file");
 		}
 
 		// Read sheet inside the workbook by its name
@@ -69,10 +63,13 @@ public class ReadExcel {
 
 			// Create a loop to print cell values in a row
 
-			for (int j = 0; j < row.getLastCellNum(); j++) {
-
+			//for (int j = 0; j < row.getLastCellNum(); j++) {
+				if(row.getCell(1).getStringCellValue().equalsIgnoreCase("Yes")) {
+					classNamesToBeExecuted.add(row.getCell(2).getStringCellValue());
+				}
 				// Print Excel data in console
-				arrInput[i][j] = row.getCell(j).getStringCellValue();
+				
+				//arrInput[i][j] = row.getCell(j).getStringCellValue();
 				// System.out.println(arrInput[i][j]);
 				// System.out.print(row.getCell(j).getStringCellValue() + "|| ");
 				/*
@@ -80,11 +77,12 @@ public class ReadExcel {
 				 * row.getCell(j+1).getStringCellValue();
 				 */
 
-			}
+			//}
 
 		}
 
-		return arrInput;
+		return classNamesToBeExecuted
+				;
 	}
 
 }

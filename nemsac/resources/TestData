@@ -1,0 +1,5 @@
+userName = "nem.jain@taistech.com"
+passWordValid = "Password12"
+passWordInvalid = "XYZ123"
+DashBoardTitle = "Welcome To the Dashboard | 4wheelparts.com"
+expectedErrorMessage = "The entered username or password is invalid"

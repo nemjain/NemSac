@@ -11,8 +11,7 @@ import commonFunctions.commonFunctionsForAll;
 public class loginPage {
 
 	WebDriver driver;
-	String userName = "nem.jain@taistech.com";
-	String passWord = "Password12";
+	
 	commonFunctionsForAll objCommonFunction = new commonFunctionsForAll(driver);
 
 	public loginPage(WebDriver driver) {
@@ -29,12 +28,16 @@ public class loginPage {
 	@FindBy(how = How.XPATH, using = "//input[@value='Sign In']")
 	private WebElement btnSignIn;
 
-	public void enterUserName() {
+	@FindBy(how = How.XPATH, using = "//div/p[@class='custom-error-style']")
+	private WebElement loginErrorMessage;
+	
+	
+	public void enterUserName(String userName) {
 		objCommonFunction.waitExplicit(driver, txtEmail);
 		txtEmail.sendKeys(userName);
 	}
 
-	public void enterPassword() {
+	public void enterPassword(String passWord) {
 		objCommonFunction.waitExplicit(driver, txtPassword);
 		txtPassword.sendKeys(passWord);
 	}
@@ -42,5 +45,11 @@ public class loginPage {
 	public void submitSignIn() {
 		objCommonFunction.waitExplicit(driver, btnSignIn);
 		btnSignIn.submit();
+	}
+	
+	public String getLoginErrorMessage() {
+		objCommonFunction.waitExplicit(driver, loginErrorMessage);
+		return loginErrorMessage.getText();
+		
 	}
 }

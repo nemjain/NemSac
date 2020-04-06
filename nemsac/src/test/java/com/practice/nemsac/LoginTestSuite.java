@@ -1,49 +1,27 @@
 package com.practice.nemsac;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.lang.reflect.Method;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageClass.MyAccountPage;
 import pageClass.homePage;
 import pageClass.loginPage;
-import utility.TestDataFileReader;
+import utility.ExtentReports.ExtentTestManager;
 
-public class LoginTestSuite {
+public class LoginTestSuite extends BaseTest {
 
-	WebDriver driver;
-	homePage objhomePage;
 	loginPage objloginPage;
-	MyAccountPage objMyAccountPage;
-	TestDataFileReader objTestDataFilereader = new TestDataFileReader();
-	/*String DashBoardTitle = "Welcome To the Dashboard | 4wheelparts.com";
-	
-	 * String userName = "nem.jain@taistech.com"; String passWordValid =
-	 * "Password12"; String passWordInvalid = "XYZ123";
-	 
-	
-	String expectedErrorMessage = "The entered username or password is invalid";
-	*/
+	WebDriver driver;
 
-	@BeforeTest
-	public void beforeTest() throws IOException {
-		// All Variable declaration
-		String driverPath = System.getProperty("user.home") + "\\git\\NemSac\\nemsac\\driver\\chromedriver.exe";
-		System.setProperty("webdriver.chrome.driver", driverPath);
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+	@Test(priority = 0, description = "Valid Login Scenario with corret username and password.")
+	public void verifyValidUserLogin(Method method) {
+		this.driver = getDriver();
 
-	}
-
-	@Test
-	public void verifyValidUserLogin() {
+		// ExtentReports Description
+		ExtentTestManager.startTest(method.getName(), "Valid Login Scenario with valid username and password.");
 		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
 		driver.get(URL);
 
@@ -55,16 +33,21 @@ public class LoginTestSuite {
 		objloginPage.enterUserName(objTestDataFilereader.getValue("userName"));
 		objloginPage.enterPassword(objTestDataFilereader.getValue("passWordValid"));
 		objloginPage.submitSignIn();
-		// objMyAccountPage = new MyAccountPage(driver);
-		// objMyAccountPage.getPageTitle();
+		objMyAccountPage = new MyAccountPage(driver);
+		objMyAccountPage.getPageTitle();
 
 		Assert.assertEquals(objTestDataFilereader.getValue("DashBoardTitle"), driver.getTitle());
 		System.out.println("Welcome To Dashboard");
+
 	}
 
-	@Test
-	public void verifyInvalidUserLogin() throws InterruptedException {
+	@Test(priority = 1, description = "Invalid Login Scenario with username and wrong password.")
+	public void verifyInvalidUserLogin(Method method) throws InterruptedException {
+		this.driver = getDriver();
+		// ExtentReports Description
+		ExtentTestManager.startTest(method.getName(), "Invalid Login Scenario with empty username and password.");
 		String URL = "https://uat:uattap123@wwwuat.4wheelparts.com";
+
 		driver.get(URL);
 		String actualLoginError;
 
@@ -77,16 +60,11 @@ public class LoginTestSuite {
 		objloginPage.enterPassword(objTestDataFilereader.getValue("passWordInvalid"));
 		objloginPage.submitSignIn();
 		actualLoginError = objloginPage.getLoginErrorMessage();
-		// objMyAccountPage = new MyAccountPage(driver);
-		// objMyAccountPage.getPageTitle();
-		
+		objMyAccountPage = new MyAccountPage(driver);
+		objMyAccountPage.getPageTitle();
+
 		Assert.assertEquals(actualLoginError, objTestDataFilereader.getValue("expectedErrorMessage"));
 		System.out.println(actualLoginError);
-	}
-
-	@AfterTest
-	public void afterTest() {
-		// driver.quit();
 	}
 
 }

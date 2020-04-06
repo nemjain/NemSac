@@ -4,10 +4,16 @@
 
 <suite name="SanityTestSuite">
 
+	<listeners>
+		<listener class-name="utility.Listeners.TestListener" />
+	</listeners>
+
 	<test name="Test">
 		<classes>
-			<class name="com.practice.nemsac.SanityTestSuite" />
-			
+			<class name="com.practice.nemsac.SanityClass" />
+
 		</classes>
 	</test>
+	
+
 </suite> 

@@ -23,7 +23,7 @@ public class commonFunctionsForAll {
 
 	public void waitExplicit(WebDriver driver, WebElement locator) {
 
-		wait = (WebDriverWait) new WebDriverWait(driver, 50).ignoring(StaleElementReferenceException.class,
+		wait = (WebDriverWait) new WebDriverWait(driver, 20).ignoring(StaleElementReferenceException.class,
 				ElementNotVisibleException.class);
 		wait.until(ExpectedConditions.visibilityOf(locator));
 
@@ -32,7 +32,7 @@ public class commonFunctionsForAll {
 	public void waitFluent(WebDriver driver) {
 
 		onjFluentWait = new FluentWait<WebDriver>(driver);
-		onjFluentWait.withTimeout(Duration.ofMillis(3000)).pollingEvery(Duration.ofMillis(300))
+		onjFluentWait.withTimeout(Duration.ofMillis(1000)).pollingEvery(Duration.ofMillis(300))
 				.ignoring(NoSuchElementException.class);
 
 	}
